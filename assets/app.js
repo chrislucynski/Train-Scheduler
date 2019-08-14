@@ -18,29 +18,10 @@ $('#submit').click(function(event){
     var firstTrainInput = $('#first-train-input').val()
     var frequencyInput = $('#frequency-input').val()
 
-    database.ref().push({
-        name: nameInput,
-        destination: destinationInput,
-        firstTrain: firstTrainInput,
-        frequency: frequencyInput
-    })
-})
-
-database.ref().on('child_added', function(snapshot){
-    console.log(snapshot.val())
-    var row = $('<tr>')
-    var nameDisplay = $('<td>')
-    var destinationDisplay = $('<td>')
-    var firstTrainDisplay = $('<td>')
-    var frequencyDisplay = $('<td>')
-
-    var tFrequency = snapshot.val().frequency;
-    // Time is 3:30 AM
-    var firstTime = snapshot.val().firstTrain;
+    var tFrequency = frequencyInput;
+    var firstTime = moment(firstTrainInput, 'HH:mm').format('HH:mm');
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-    // Current Time
-    var currentTime = moment();
     // Difference between the times
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     // Time apart (remainder)
@@ -50,12 +31,32 @@ database.ref().on('child_added', function(snapshot){
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
 
+    database.ref().push({
+        name: nameInput,
+        destination: destinationInput,
+        frequency: frequencyInput,
+        nextArrival: moment(nextTrain).format('hh:mm'),
+        minutesAway: tMinutesTillTrain
+    })
+    console.log(nextTrain)
+})
+
+database.ref().on('child_added', function(snapshot){
+    console.log(snapshot.val())
+    var row = $('<tr>')
+    var nameDisplay = $('<td>')
+    var destinationDisplay = $('<td>')
+    var frequencyDisplay = $('<td>')
+    var nextArrivalDisplay = $('<td>')
+    var minutesAwayDisplay = $('<td>')
+
     nameDisplay.text(snapshot.val().name) 
     destinationDisplay.text(snapshot.val().destination) 
-    firstTrainDisplay.text(snapshot.val().firstTrain) 
     frequencyDisplay.text(snapshot.val().frequency) 
+    nextArrivalDisplay.text(snapshot.val().nextArrival) 
+    minutesAwayDisplay.text(snapshot.val().minutesAway) 
 
-    row.append(nameDisplay, destinationDisplay, firstTrainDisplay, frequencyDisplay)
+    row.append(nameDisplay, destinationDisplay, frequencyDisplay, nextArrivalDisplay, minutesAwayDisplay)
     $('#data-fill').append(row)
 })
 
