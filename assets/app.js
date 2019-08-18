@@ -17,32 +17,37 @@ $('#submit').click(function(event){
     var destinationInput = $('#destination-input').val()
     var firstTrainInput = $('#first-train-input').val()
     var frequencyInput = $('#frequency-input').val()
-
+    
     var tFrequency = frequencyInput;
-    var firstTime = moment(firstTrainInput, 'HH:mm').format('HH:mm');
+    var firstTime = moment(firstTrainInput, 'h:mm a').format('h:mm a');
     // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    var firstTimeConverted = moment(firstTime, "h:mm a").subtract(1, "years");
     // Difference between the times
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    // Current Time
+    var currentTime = moment()
     // Time apart (remainder)
     var tRemainder = diffTime % tFrequency;
     // Minute Until Train
     var tMinutesTillTrain = tFrequency - tRemainder;
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-
+    
     database.ref().push({
         name: nameInput,
         destination: destinationInput,
         frequency: frequencyInput,
-        nextArrival: moment(nextTrain).format('hh:mm'),
+        nextArrival: moment(nextTrain).format('h:mm a'),
         minutesAway: tMinutesTillTrain
     })
-    console.log(nextTrain)
+    nameInput = $('#train-name-input').val('')
+    destinationInput = $('#destination-input').val('')
+    firstTrainInput = $('#first-train-input').val('')
+    frequencyInput = $('#frequency-input').val('')
+    
 })
 
 database.ref().on('child_added', function(snapshot){
-    console.log(snapshot.val())
     var row = $('<tr>')
     var nameDisplay = $('<td>')
     var destinationDisplay = $('<td>')
@@ -59,6 +64,12 @@ database.ref().on('child_added', function(snapshot){
     row.append(nameDisplay, destinationDisplay, frequencyDisplay, nextArrivalDisplay, minutesAwayDisplay)
     $('#data-fill').append(row)
 })
+
+
+// issues noted:
+//      min away does not update, both in real time, as well as when the screen is refreshed
+            // have all the input fields push to database, and do timing calculation when we do database.ref()?
+
 
 
 
