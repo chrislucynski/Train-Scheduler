@@ -1,3 +1,44 @@
+body {
+    background-image: url(http://api.thumbr.it/whitenoise-361x370.png?background=a8dbc8ff&noise=626262&density=29&opacity=48);
+    /* background-url: http://api.thumbr.it/whitenoise-361x370.png?background=b3dbebff&noise=626262&density=70&opacity=12; */
+}
+
+#add-train {
+    background-image: url(/assets/images/Train_tracks_dark_small.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 4px 2px 40px 3px rgba(0,0,0,0.75)
+}
+
 .footer {
     background-color: #e9ecef;
+}
+
+.jumbotron {
+    background-image: url(/assets/images/train_tracks.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 4px 2px 40px 3px rgba(0,0,0,0.75);
+
+}
+
+.strip-color {
+    background-color: #264653;
+
+}
+
+table {
+    background-color: #264653;
+    box-shadow: 4px 2px 40px 3px rgba(0,0,0,0.75)
+
+}
+
+#submit {
+    background-color: #3685B5;
+}
+
+#train-schedule {
+    box-shadow: 4px 2px 40px 3px rgba(0,0,0,0.75);
+
+
 }

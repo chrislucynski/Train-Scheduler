@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel="stylesheet" href="/assets/style.css">
     <title>Hello, world!</title>
   </head>
   <body>
     <!-- Required meta tags -->
-    <div class="jumbotron p-4">
+    <div class="jumbotron p-4 text-white text-center">
         <h1 class="display-4">Train scheduler!</h1>
         <p class="lead">If you rely on public transportation, specifically trains, you're going to LOVE this application.</p>
-        <hr class="my-4">
         <p>Type in the name of the train, your destination, the first train time, and the frequency, and you'll be added to the scheduling queue!</p>
     </div>
 
-    <div class="container p-0">
-        <p class="bg-dark text-light lead text-center mb-0 font-weight-bold py-2">Train Schedule</p>
-        <table class="table table-hover table-dark">
+    <div class="container p-0" id="train-schedule">
+        <p class="bg-dark text-light lead rounded text-center mb-0 font-weight-bold py-2">Train Schedule</p>
+        <table class="table text-white table-hover rounded shadow">
             <thead>
                     <tr>
                     </tr>
@@ -35,8 +34,8 @@
             </tbody>
         </table>
     </div>
-      <div class="container border border-primary rounded p-0 mb-3" >
-          <p class="bg-primary text-light text-center p-2 lead">Add Train</p>
+      <div class="container border border-secondary rounded text-white p-0 mb-3" id="add-train">
+          <p class="strip-color text-light text-center p-2 lead">Add Train</p>
         <form class="p-3">
             <div class="form-group">
                 <label for="formGroupExampleInput">Train Name</label>
@@ -54,11 +53,11 @@
                 <label for="formGroupExampleInput2">Frequency (min)</label>
                 <input type="text" class="form-control" id="frequency-input" placeholder="Frequency (min)">
             </div>
-            <button class="btn btn-primary"id="submit">Submit</button>
+            <button class="btn text-white" id="submit">Submit</button>
         </form>
     </div>
 
-    <footer class="footer mt-auto py-3 bg-primary">
+    <footer class="footer mt-auto py-3 strip-color">
         <div class="container text-center">
           <span class="text-light lead font-weight-bold">Last stop! You're at the end of the line.</span>
         </div>
