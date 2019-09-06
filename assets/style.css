@@ -4,7 +4,7 @@ body {
 }
 
 #add-train {
-    background-image: url(/assets/images/Train_tracks_dark_small.jpeg);
+    background-image: url('./images/Train_tracks_dark_small.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     box-shadow: 4px 2px 40px 3px rgba(0,0,0,0.75)
@@ -15,7 +15,7 @@ body {
 }
 
 .jumbotron {
-    background-image: url(/assets/images/train_tracks.jpg);
+    background-image: url('./images/train_tracks.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     box-shadow: 4px 2px 40px 3px rgba(0,0,0,0.75);
